@@ -1,0 +1,34 @@
+class Adiff < Formula
+  desc "Review agent work in a git worktree and hand the comments back to the agent"
+  homepage "https://github.com/Newbie012/agent-diff"
+  url "https://registry.npmjs.org/@eliya-oss/agent-diff/-/agent-diff-0.1.0-alpha.2.tgz"
+  sha256 "387edd231a4a45490aee87b8af34a5a0b357a633efc69b3cb224806283df532c"
+  license "MIT"
+
+  depends_on "node@26"
+
+  def install
+    system "npm", "install", *std_npm_args
+    bin.install_symlink Dir[libexec/"bin/*"]
+    bin.env_script_all_files(libexec/"shims", PATH: "#{Formula["node@26"].opt_bin}:$PATH")
+  end
+
+  test do
+    require "json"
+
+    catalog = JSON.parse(shell_output("#{bin}/adiff describe"))
+    assert catalog["ok"]
+    names = catalog["commands"].map { |command| command["name"] }
+    assert_includes names, "review open"
+
+    system "git", "init", "--initial-branch=main", testpath/"repo"
+    (testpath/"repo/README.md").write "hello\n"
+    system "git", "-C", testpath/"repo", "add", "README.md"
+    system "git", "-C", testpath/"repo", "-c", "user.name=brew",
+           "-c", "user.email=brew@example.com", "commit", "-m", "first"
+
+    branches = JSON.parse(shell_output("#{bin}/adiff branch list --repo #{testpath}/repo"))
+    assert branches["ok"]
+    assert_kind_of Array, branches["branches"]
+  end
+end
