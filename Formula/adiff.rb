@@ -19,9 +19,6 @@ class Adiff < Formula
     BASH
   end
 
-  # The renderer ships as a prebuilt dylib that Homebrew cannot relink.
-  def fix_dynamic_linkage; end
-
   test do
     require "json"
 
