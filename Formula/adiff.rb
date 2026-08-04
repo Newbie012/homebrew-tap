@@ -9,9 +9,18 @@ class Adiff < Formula
 
   def install
     system "npm", "install", *std_npm_args
-    bin.install_symlink Dir[libexec/"bin/*"]
-    bin.env_script_all_files(libexec/"shims", PATH: "#{Formula["node@26"].opt_bin}:$PATH")
+    launcher = libexec/"lib/node_modules/@eliya-oss/agent-diff/bin/adiff.js"
+    # The terminal renders through node:ffi, so put the node this formula
+    # depends on ahead of whatever node the user happens to be running.
+    (bin/"adiff").write <<~BASH
+      #!/bin/bash
+      export PATH="#{Formula["node@26"].opt_bin}:$PATH"
+      exec "#{launcher}" "$@"
+    BASH
   end
+
+  # The renderer ships as a prebuilt dylib that Homebrew cannot relink.
+  def fix_dynamic_linkage; end
 
   test do
     require "json"
