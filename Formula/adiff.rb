@@ -1,8 +1,8 @@
 class Adiff < Formula
   desc "Review agent work in a git worktree and hand the comments back to the agent"
   homepage "https://github.com/Newbie012/agent-diff"
-  url "https://registry.npmjs.org/@eliya-oss/agent-diff/-/agent-diff-0.1.0-alpha.2.tgz"
-  sha256 "387edd231a4a45490aee87b8af34a5a0b357a633efc69b3cb224806283df532c"
+  url "https://registry.npmjs.org/@eliya-oss/agent-diff/-/agent-diff-0.1.0-alpha.20.tgz"
+  sha256 "8577569a05405a750abeaad0a8b9fc988014b4606ef428dbed7b175af4f08d9d"
   license "MIT"
 
   depends_on "node@26"
