@@ -1,22 +1,22 @@
 class Adiff < Formula
   desc "Review agent work in a git worktree and hand the comments back to the agent"
   homepage "https://github.com/Newbie012/agent-diff"
-  url "https://registry.npmjs.org/@eliya-oss/agent-diff/-/agent-diff-0.1.0-alpha.38.tgz"
-  sha256 "c7682278ea1ca6cbf3889afe7ac36f0c2ae50a634036b4b5b84e4c0d96f805e5"
+  version "0.1.0-alpha.41"
   license "MIT"
 
-  depends_on "node@26"
+  on_macos do
+    on_arm do
+      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.41/adiff-darwin-arm64"
+      sha256 "ddc5e86df5a073aa803a2eb1f67bda098e30631c4ed2257646b458a26c8453c9"
+    end
+    on_intel do
+      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.41/adiff-darwin-x64"
+      sha256 "c0f9068f1a09451ebadda07644a42bd249bf65c82eef505ace90f1b544f6356c"
+    end
+  end
 
   def install
-    system "npm", "install", *std_npm_args
-    launcher = libexec/"lib/node_modules/@eliya-oss/agent-diff/bin/adiff.js"
-    # The terminal renders through node:ffi, so put the node this formula
-    # depends on ahead of whatever node the user happens to be running.
-    (bin/"adiff").write <<~BASH
-      #!/bin/bash
-      export PATH="#{Formula["node@26"].opt_bin}:$PATH"
-      exec "#{launcher}" "$@"
-    BASH
+    bin.install Dir["adiff-*"].first => "adiff"
   end
 
   test do
