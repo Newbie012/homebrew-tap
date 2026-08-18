@@ -1,17 +1,17 @@
 class Adiff < Formula
   desc "Review agent work in a git worktree and hand the comments back to the agent"
   homepage "https://github.com/Newbie012/agent-diff"
-  version "0.1.0-alpha.74"
+  version "0.1.0-alpha.75"
   license "MIT"
 
   on_macos do
     on_arm do
-      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.74/adiff-darwin-arm64.tar.gz"
-      sha256 "2730218b5715000a0e426372383d32a0653a11aa60ddb1782f99b7d91d136844"
+      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.75/adiff-darwin-arm64.tar.gz"
+      sha256 "cf6b34d42248ab0ed386d932d695130ab38d6998a5c15a08e2903cba33b4ff84"
     end
     on_intel do
-      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.74/adiff-darwin-x64.tar.gz"
-      sha256 "3a3f9bb74ad5203292c655833bdf42287a573abbf35728c4e70b2c992ce1b97a"
+      url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.75/adiff-darwin-x64.tar.gz"
+      sha256 "8b1db7985b760469af40387b76bc708b010bee2837a85afe9ab80a082411d476"
     end
   end
 
