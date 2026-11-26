@@ -3,7 +3,7 @@ class Adiff < Formula
   homepage "https://github.com/Newbie012/agent-diff"
   url "https://github.com/Newbie012/agent-diff/releases/download/v0.1.0-alpha.203/adiff-darwin-arm64.tar.gz"
   version "0.1.0-alpha.203"
-  sha256 "12bbcfae40e54328b9a391f4c447dd0fdd9e246e396aa2503737a54a8b33cc60"
+  sha256 "2d870ed82c62cd637b60075caaba8291f25332602f6d8a37136c00f22639f35c"
   license "MIT"
 
   depends_on arch: :arm64
